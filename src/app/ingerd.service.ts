@@ -16,11 +16,11 @@ const httpOptions = {
 export class IngerdService {
   private baseUrl0 ='http://aaa-projm.7e14.starter-us-west-2.openshiftapps.com/rest';
   private baseUrl='http://127.0.0.1:8080/rest'
-  private foodsUrl = this.baseUrl0+'/ingr';  // URL to web api
+  private foodsUrl = this.baseUrl+'/ingr';  // URL to web api
 
   private foodsUrl1 = 'http://127.0.0.1:8080/rest/q';  // URL to web api
-  private ingredSearchUrl=this.baseUrl0+'/qingred';
-  private getIngredUrl=this.baseUrl0+'/oneingre/retoneingre';
+  private ingredSearchUrl=this.baseUrl+'/qingred';
+  private getIngredUrl=this.baseUrl+'/oneingre/retoneingre';
   constructor(    
     private http: HttpClient,
     private messageService: MessageService) { }

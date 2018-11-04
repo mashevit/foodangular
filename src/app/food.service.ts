@@ -17,13 +17,14 @@ const httpOptions = {
 
 
 export class FoodService {
+  private baseUrl='http://127.0.0.1:8080/rest'
 
 
   private baseUrl0 ='http://aaa-projm.7e14.starter-us-west-2.openshiftapps.com/rest';
 
-  private foodsUrl = this.baseUrl0+'/dish';  // URL to web api
+  private foodsUrl = this.baseUrl+'/dish';  // URL to web api
 
-  private foodsUrl1 = this.baseUrl0+'/q';  // URL to web api
+  private foodsUrl1 = this.baseUrl+'/q';  // URL to web api
 
 
   constructor(
