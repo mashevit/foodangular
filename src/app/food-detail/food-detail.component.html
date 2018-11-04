@@ -1,0 +1,29 @@
+<div *ngIf="food">
+    <h2>{{food.dishName | uppercase}} Details</h2>
+    <div><span>id: </span>{{food.id}}</div>
+    <div>
+      <label>name:
+        <input [(ngModel)]="food.dishName" placeholder="name"/>
+      </label>
+    </div>
+
+      <button (click)="goBack()">go back</button>
+      <button (click)="save()">save</button>
+
+    <h2>{{food.dishName | uppercase}} Ingreds</h2>
+
+<ul class="heroes">
+    <li *ngFor="let ingred of ingreds">
+        <a routerLink="/detingr/{{ingred.id}}">
+          <span class="badge">{{ingred.id}}</span> {{ingred.ingrName}}
+        </a>
+         <button class="delete" title="delete food"
+        (click)="deleteIngr(food,ingred)">x</button> 
+    </li>
+</ul>
+
+
+<app-ingred-search [food]="food"></app-ingred-search>
+</div>
+
+ 

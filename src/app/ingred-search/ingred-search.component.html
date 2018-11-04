@@ -1,0 +1,19 @@
+<div *ngIf="selectedIngred" >add {{selectedIngred.ingrName}} id {{selectedIngred.id}} to {{food.dishName}}       
+   <br> <button class="delete1" title="add selected"
+  (click)="addIngred(food,selectedIngred)">yep</button> </div>
+<div id="search-component">
+  <h4>Ingred Search</h4>
+
+
+
+  <input #searchBox id="search-box" (keyup)="search(searchBox.value)" [(ngModel)]='selectedIngred.ingrName'/>
+  <div *ngIf="(ingreds$ | async)?.length==0">add {{searchBox.value}} to {{food.dishName}}</div>
+ 
+  <ul class="search-result">
+    <li *ngFor="let ingred of ingreds$ | async" >
+      <a (click)="setSelectedIngred(ingred)" >     <!-- <a routerLink="/detingr/{{ingred.id}}"> -->
+        {{ingred.ingrName}}
+      </a>
+    </li>
+  </ul>
+</div>
