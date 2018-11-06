@@ -17,10 +17,10 @@ const httpOptions = {
 
 
 export class FoodService {
-  private baseUrl0='http://127.0.0.1:8080/rest'
+  private baseUrl='http://127.0.0.1:8080/rest'
 
 
-  private baseUrl ='http://aaa-projm.7e14.starter-us-west-2.openshiftapps.com/rest';
+  private baseUrl0 ='http://aaa-projm.7e14.starter-us-west-2.openshiftapps.com/rest';
 
   private foodsUrl = this.baseUrl0+'/dish';  // URL to web api
 

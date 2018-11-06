@@ -15,8 +15,8 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class IngerdService {
-  private baseUrl ='http://aaa-projm.7e14.starter-us-west-2.openshiftapps.com/rest';
-  private baseUrl0='http://127.0.0.1:8080/rest'
+  private baseUrl0 ='http://aaa-projm.7e14.starter-us-west-2.openshiftapps.com/rest';
+  private baseUrl='http://127.0.0.1:8080/rest'
   private foodsUrl = this.baseUrl0+'/ingr';  // URL to web api
 
   private foodsUrl1 = this.baseUrl0+'/q';  // URL to web api
