@@ -32,7 +32,7 @@ private d:number;
 
   search(term: string): void {
     this.searchTerms.next(term);
-    this.selectedIngred=this.nullIngred;
+   // this.selectedIngred=this.nullIngred;
   }
  
   addIngred(food:Food,ingred:Ingred){

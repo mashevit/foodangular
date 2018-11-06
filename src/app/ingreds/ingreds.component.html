@@ -1,0 +1,20 @@
+<h2>My Ingreds</h2>
+<ul class="heroes">
+    <li *ngFor="let food of ingreds">
+        <a routerLink="/detingr/{{food.id}}">
+          <span class="badge">{{food.id}}</span> {{food.ingrName}}, {{food.numOfDishes}}
+        </a>
+        <button class="delete" title="delete food"
+        (click)="delete(food)">x</button>
+    </li>
+</ul>
+
+<div>
+    <label>Ingred name:
+      <input #foodName />
+    </label>
+    <!-- (click) passes input value to add() and then clears the input -->
+    <button (click)="add(foodName.value); foodName.value=''">
+      add
+    </button>
+  </div>

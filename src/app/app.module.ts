@@ -14,6 +14,7 @@ import { InMemoryDataService }  from './in-memory-data.service';
 import { FoodSearchComponent } from './food-search/food-search.component';
 import { IngredSearchComponent } from './ingred-search/ingred-search.component';
 import { IngredDetailComponent } from './ingred-detail/ingred-detail.component';
+import { IngredsComponent } from './ingreds/ingreds.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { IngredDetailComponent } from './ingred-detail/ingred-detail.component';
     FoodSearchComponent,
     IngredSearchComponent,
     IngredDetailComponent,
+    IngredsComponent,
   
   ],
   imports: [

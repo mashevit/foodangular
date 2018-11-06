@@ -4,7 +4,7 @@ import { Location } from '@angular/common';
  
 import { Ingred }         from '../ingredi';
 import { IngerdService }  from '../ingerd.service';
-
+import{Food} from '../food'
 
 @Component({
   selector: 'app-ingred-detail',
@@ -14,7 +14,8 @@ import { IngerdService }  from '../ingerd.service';
 export class IngredDetailComponent implements OnInit {
 
   @Input() ingred: Ingred;
- 
+ foods:Food[];
+
   constructor(
     private route: ActivatedRoute,
     private ingredService: IngerdService,
@@ -28,7 +29,7 @@ export class IngredDetailComponent implements OnInit {
   getIngred(): void {
     const id = +this.route.snapshot.paramMap.get('id1');
     this.ingredService.getIngred(id)
-      .subscribe(ingred => this.ingred = ingred);
+      .subscribe(ingred =>{ this.ingred = ingred;this.getfoods(ingred);});
   }
 
 
@@ -40,5 +41,12 @@ export class IngredDetailComponent implements OnInit {
     this.ingredService.updateIngred(this.ingred)
       .subscribe(() => this.goBack());
   }
+
+getfoods(ingre:Ingred):void{
+
+  this.ingredService.foodsForIngred(ingre)
+      .subscribe(foods=>this.foods=foods );
+
+}
 
 }
