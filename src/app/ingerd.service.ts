@@ -56,6 +56,14 @@ getIngred(id: number): Observable<Ingred> {
   );
 }
 
+
+getIngreddat(id: number): Observable<Ingred> {
+  const url = `${this.getIngredUrl}/${id}`;
+  return this.http.get<Ingred>(url).pipe(
+    tap(_ => this.log(`fetched ingred id=${id}`)),
+    catchError(this.handleError<Ingred>(`getIngred id=${id}`))
+  );
+}
 deleteIngred (indish: Indish): Observable<Ingred> {
   //const id = typeof food === 'number' ? food : food.id;
   const url = `${this.foodsUrl}/deloneingr`;
