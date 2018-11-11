@@ -16,8 +16,11 @@ app.get('/', function(req, res){
     res.sendFile(rootPath + 'src/index.html');
 });
 
-app.listen(port, ipaddr, function(){
-    console.log('Express server listening on port ' + app.get('port'));
-  });
+var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
+var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
+ 
+server.listen(server_port, server_ip_address, function () {
+  console.log( "Listening on " + server_ip_address + ", port " + server_port )
+});
 console.log(new Date() + ' Listening on port: ' + nodePort);
 
