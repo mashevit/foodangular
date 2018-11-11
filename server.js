@@ -1,26 +1,21 @@
-'use strict';
+//Install express server
+const express = require('express');
+const path = require('path');
 
-var express = require('express');
-var app = express();
-var path = require('path');
-var rootPath = path.normalize(__dirname);
-var nodePort = '2009';
+const app = express();
 
-app.use(express.static(rootPath));
-//console.log(rootPath);
-app.use('/node_modules', express.static(rootPath + '/node_modules'))
-var ipaddr = process.env.OPENSHIFT_NODEJS_IP || "localhost";
-var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8000;
+// Serve only the static files form the dist directory
+app.use(express.static(__dirname + '/dist/food-angular'));
 
-app.get('/', function(req, res){
-    res.sendFile(rootPath + 'src/index.html');
+app.get('/*', function(req,res) {
+    
+res.sendFile(path.join(__dirname+'/dist/food-angular/index.html'));
 });
-
 var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
 var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
  
-server.listen(server_port, server_ip_address, function () {
-  console.log( "Listening on " + server_ip_address + ", port " + server_port )
-});
-console.log(new Date() + ' Listening on port: ' + nodePort);
-
+// server.listen(server_port, server_ip_address, function () {
+//   console.log( "Listening on " + server_ip_address + ", port " + server_port )
+// });
+// Start the app by listening on the default Heroku port
+app.listen(process.env.OPENSHIFT_NODEJS_PORT || 8080);
