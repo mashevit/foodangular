@@ -1,26 +1,23 @@
-//Install express server
-const express = require('express');
-const path = require('path');
+'use strict';
 
-const app = express();
+var express = require('express');
+var app = express();
+var path = require('path');
+var rootPath = path.normalize(__dirname);
+var nodePort = '2009';
 
-// Serve only the static files form the dist directory
-app.use(express.static(__dirname + '/src'));
+app.use(express.static(rootPath));
+//console.log(rootPath);
+app.use('/node_modules', express.static(rootPath + '/node_modules'))
+var ipaddr = process.env.OPENSHIFT_NODEJS_IP || "localhost";
+var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8000;
 
-app.get('/*', function(req,res) {
-    
-res.sendFile(path.join(__dirname,'/src/index.html'));
+app.get('/', function(req, res){
+    res.sendFile(rootPath + 'src/index.html');
 });
 
-// Start the app by listening on the default Heroku port
-app.listen(process.env.PORT || 8080);
+app.listen(port, ipaddr, function(){
+    console.log('Express server listening on port ' + app.get('port'));
+  });
+console.log(new Date() + ' Listening on port: ' + nodePort);
 
-var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
-
-var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
-
-app.listen(server_port, server_ip_address, function () {
-
-    console.log( "Listening on " + server_ip_address + ", server_port " + server_port  );
-
-});
