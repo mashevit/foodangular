@@ -1,11 +1,11 @@
 var express = require('express')
 , app = express()
 , server = require('http').createServer(app)
-, io = require("socket.io").listen(server)
-, npid = require("npid")
-, uuid = require('node-uuid')
-, Room = require('./room.js')
-, _ = require('underscore')._;
+//, io = require("socket.io").listen(server)
+//, npid = require("npid")
+//, uuid = require('node-uuid')
+//, Room = require('./room.js')
+//, _ = require('underscore')._;
 
 
 //app.set('port', process.env.OPENSHIFT_NODEJS_PORT || 3000);
