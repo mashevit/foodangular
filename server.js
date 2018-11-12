@@ -1,42 +1,34 @@
-//Install express server
-const express = require('express');
-const path = require('path');
-
-//const app = express();
-//var express = require('express');
-var app = express();
-var server = require('http').Server(app);
-// // Serve only the static files form the dist directory
-// app.use(express.static(__dirname + '/dist/food-angular'));
-
-// app.get('/*', function(req,res) {
-    
-// res.sendFile(path.join(__dirname+'/dist/food-angular/index.html'));
-// });
-// var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
-// var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
- 
-// // server.listen(server_port, server_ip_address, function () {
-// //   console.log( "Listening on " + server_ip_address + ", port " + server_port )
-// // });
-// // Start the app by listening on the default Heroku port
+var express = require('express')
+, app = express()
+, server = require('http').createServer(app)
+, io = require("socket.io").listen(server)
+, npid = require("npid")
+, uuid = require('node-uuid')
+, Room = require('./room.js')
+, _ = require('underscore')._;
 
 
-// server.listen(server_port, server_ip_address, function () {
-//     console.log( "Listening on " + server_ip_address + ", port " + server_port )
-//   });
-// //app.listen(process.env.OPENSHIFT_NODEJS_PORT || 8080);
+//app.set('port', process.env.OPENSHIFT_NODEJS_PORT || 3000);
+app.set('ipaddr', process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1");
+app.use(express.bodyParser());
+app.use(express.methodOverride());
+app.use(express.static(__dirname + '/public'));
+app.use('/components', express.static(__dirname + '/components'));
+app.use('/js', express.static(__dirname + '/js'));
+app.use('/icons', express.static(__dirname + '/icons'));
+app.set('views', __dirname + '/views');
+app.engine('html', require('ejs').renderFile);
+app.set('port', process.env.OPENSHIFT_NODEJS_PORT ||  process.env.OPENSHIFT_INTERNAL_PORT || process.env.PORT || 3000);
+app.set('ip', process.env.OPENSHIFT_NODEJS_IP || process.env.OPENSHIFT_INTERNAL_IP || 'localhost');
 
 
-app.configure(function() {
-    // Set the IP and port to use the OpenShift variables.
-    app.set('port', process.env.OPENSHIFT_NODEJS_PORT ||  process.env.OPENSHIFT_INTERNAL_PORT || process.env.PORT || 3000);
-    app.set('ip', process.env.OPENSHIFT_NODEJS_IP || process.env.OPENSHIFT_INTERNAL_IP || 'localhost');
-  });
-  
-  // ...
-  
-  // Set the app.listen to use the port and ip.
-  app.listen(app.get('port'), app.get('ip'), function(){
+app.listen(app.get('port'), app.get('ip'), function(){
     console.log("Express server listening on " + app.get('ip') + ":" + app.get('port'));
   });
+/* Store process-id (as priviledged user) */
+try {
+    npid.create('/var/run/advanced-chat.pid', true);
+} catch (err) {
+    console.log(err);
+    //process.exit(1);
+}
