@@ -1,11 +1,11 @@
-// //Install express server
-// const express = require('express');
-// const path = require('path');
+//Install express server
+const express = require('express');
+const path = require('path');
 
-// //const app = express();
-// //var express = require('express');
-// var app = express();
-// var server = require('http').Server(app);
+//const app = express();
+//var express = require('express');
+var app = express();
+var server = require('http').Server(app);
 // // Serve only the static files form the dist directory
 // app.use(express.static(__dirname + '/dist/food-angular'));
 
@@ -28,15 +28,15 @@
 // //app.listen(process.env.OPENSHIFT_NODEJS_PORT || 8080);
 
 
-server.configure(function() {
+app.configure(function() {
     // Set the IP and port to use the OpenShift variables.
-    server.set('port', process.env.OPENSHIFT_NODEJS_PORT ||  process.env.OPENSHIFT_INTERNAL_PORT || process.env.PORT || 3000);
-    server.set('ip', process.env.OPENSHIFT_NODEJS_IP || process.env.OPENSHIFT_INTERNAL_IP || 'localhost');
+    app.set('port', process.env.OPENSHIFT_NODEJS_PORT ||  process.env.OPENSHIFT_INTERNAL_PORT || process.env.PORT || 3000);
+    app.set('ip', process.env.OPENSHIFT_NODEJS_IP || process.env.OPENSHIFT_INTERNAL_IP || 'localhost');
   });
   
   // ...
   
   // Set the app.listen to use the port and ip.
-  server.listen(server.get('port'), server.get('ip'), function(){
-    console.log("Express server listening on " + server.get('ip') + ":" + server.get('port'));
+  app.listen(app.get('port'), app.get('ip'), function(){
+    console.log("Express server listening on " + app.get('ip') + ":" + app.get('port'));
   });
