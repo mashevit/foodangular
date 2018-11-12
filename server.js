@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 
 //const app = express();
-var express = require('express');
+//var express = require('express');
 var app = express();
 var server = require('http').Server(app);
 // Serve only the static files form the dist directory
