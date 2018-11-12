@@ -18,8 +18,8 @@ app.use('/js', express.static(__dirname + '/js'));
 app.use('/icons', express.static(__dirname + '/icons'));
 app.set('views', __dirname + '/views');
 //app.engine('html', require('ejs').renderFile);
-app.set('port', process.env.OPENSHIFT_NODEJS_PORT ||  process.env.OPENSHIFT_INTERNAL_PORT || process.env.PORT || 3000);
-app.set('ip', process.env.OPENSHIFT_NODEJS_IP || process.env.OPENSHIFT_INTERNAL_IP || 'localhost');
+app.set('port', process.env.OPENSHIFT_NODEJS_PORT ||  process.env.OPENSHIFT_INTERNAL_PORT || process.env.PORT || 8080);
+app.set('ip', process.env.OPENSHIFT_NODEJS_IP || process.env.OPENSHIFT_INTERNAL_IP || '0.0.0.0');
 
 
 app.listen(app.get('port'), app.get('ip'), function(){
