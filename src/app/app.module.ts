@@ -9,8 +9,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule }    from '@angular/common/http';
 
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService }  from './in-memory-data.service';
+//import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+//import { InMemoryDataService }  from './in-memory-data.service';
 import { FoodSearchComponent } from './food-search/food-search.component';
 import { IngredSearchComponent } from './ingred-search/ingred-search.component';
 import { IngredDetailComponent } from './ingred-detail/ingred-detail.component';
