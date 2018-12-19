@@ -26,8 +26,9 @@ export class FoodsComponent implements OnInit {
     name = name.trim();
     if (!name) { return; }
     //dishName =name;
-
-    this.foodService.addFood({  dishName: name } as Food)
+    let foodtmp:Food = new Food();
+    foodtmp.dishname=name;
+    this.foodService.addFood(foodtmp)
       .subscribe(food => {
         this.foods.push(food);
       });

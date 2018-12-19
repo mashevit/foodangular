@@ -9,8 +9,8 @@ import { IngerdService } from '../ingerd.service';
 })
 export class IngredsComponent implements OnInit {
 
- ingreds:Ingred[]=[{     id: -1 ,
-  ingrName: "a",numOfDishes:0 } as Ingred];
+ ingreds:Ingred[]=[{     idingrenames: -1 ,
+  ingrname: "a",numOfDishes:0 } as Ingred];
  
   constructor(private ingerdService: IngerdService) { }
 
@@ -179,15 +179,15 @@ export class IngredsComponent implements OnInit {
     if (!name) { return; }
     //dishName =name;
 
-    this.ingerdService.newInrged({  ingrName: name } as Ingred)
-      .subscribe(food => {
-        this.ingreds.push({  ingrName: name, id:food} as Ingred);
+    this.ingerdService.newInrged({  ingrname: name } as Ingred)
+      .subscribe(idfood => {
+        this.ingreds.push({  ingrname: name, idingrenames:idfood} as Ingred);
       });
   }
 
   delete(food: Ingred): void {
     this.ingreds = this.ingreds.filter(h => h !== food);
-    this.ingerdService.deleteIngred1(food.id).subscribe();
+    this.ingerdService.deleteIngred1(food.idingrenames).subscribe();
   }
 
   addData():void{

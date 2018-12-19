@@ -1,9 +1,9 @@
 <div *ngIf="food">
-    <h2>{{food.dishName | uppercase}} Details</h2>
-    <div><span>id: </span>{{food.id}}</div>
+    <h2>{{food.dishname | uppercase}} Details</h2>
+    <div><span>id: </span>{{food.iddish}}</div>
     <div>
       <label>name:
-        <input [(ngModel)]="food.dishName" placeholder="name"/>
+        <input [(ngModel)]="food.dishname" placeholder="name"/>
       </label>
     </div>
 
@@ -14,8 +14,8 @@
 
 <ul class="heroes">
     <li *ngFor="let ingred of ingreds">
-        <a routerLink="/detingr/{{ingred.id}}">
-          <span class="badge">{{ingred.id}}</span> {{ingred.ingrName}}
+        <a routerLink="/detingr/{{ingred.idingrenames}}">
+          <span class="badge">{{ingred.idingrenames}}</span> {{ingred.ingrname}}
         </a>
          <button class="delete" title="delete food"
         (click)="deleteIngr(food,ingred)">x</button> 

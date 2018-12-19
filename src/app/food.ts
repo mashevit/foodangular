@@ -1,4 +1,7 @@
 export class Food {
-    id: number;
-    dishName: string;
+iddish:number;
+
+	dishing:number;
+
+	 dishname:String ;
   }

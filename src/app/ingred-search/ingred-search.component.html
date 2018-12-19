@@ -1,4 +1,4 @@
-<div *ngIf="selectedIngred" >add {{selectedIngred.ingrName}} id {{selectedIngred.id}} to {{food.dishName}}       
+<div *ngIf="selectedIngred" >add {{selectedIngred.ingrname}} id {{selectedIngred.idingrenames}} to {{food.dishname}}       
    <br> <button class="delete1" title="add selected"
   (click)="addIngred(food,selectedIngred)">yep</button> </div>
 <div id="search-component">
@@ -6,13 +6,13 @@
 
 
 
-  <input #searchBox id="search-box" (keyup)="search(searchBox.value)" [(ngModel)]='selectedIngred.ingrName'/>
+  <input #searchBox id="search-box" (keyup)="search(searchBox.value)" [(ngModel)]='selectedIngred.ingrname'/>
   <div *ngIf="(ingreds$ | async)?.length==0">add {{searchBox.value}} to {{food.dishName}}</div>
  
   <ul class="search-result">
     <li *ngFor="let ingred of ingreds$ | async" >
       <a (click)="setSelectedIngred(ingred)" >     <!-- <a routerLink="/detingr/{{ingred.id}}"> -->
-        {{ingred.ingrName}}
+        {{ingred.ingrname}}
       </a>
     </li>
   </ul>

@@ -7,7 +7,8 @@ import {Ingred} from './ingredi';
 import{Indish} from './indish'
 import{Food} from './food'
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json',
+  'Access-Control-Allow-Origin': '*' })
 };
 
 
@@ -15,13 +16,16 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class IngerdService {
-  private baseUrl0 ='http://aaa-projm.7e14.starter-us-west-2.openshiftapps.com/rest';
-  private baseUrl='http://127.0.0.1:8080/rest'
+  private baseUrl ='http://aaa-projm.7e14.starter-us-west-2.openshiftapps.com/rest';
+  private baseUrl0='http://127.0.0.1:8080/rest'
   private foodsUrl = this.baseUrl0+'/ingr';  // URL to web api
 
   private foodsUrl1 = this.baseUrl0+'/q';  // URL to web api
   private ingredSearchUrl=this.baseUrl0+'/qingred';
   private getIngredUrl=this.baseUrl0+'/oneingre/retoneingre';
+
+  private foodsUrl0 = 'https://foodapi8.herokuapp.com';/////////////
+
   constructor(    
     private http: HttpClient,
     private messageService: MessageService) { }
@@ -29,7 +33,7 @@ export class IngerdService {
 
     /** GET hero by id. Will 404 if id not found */
 getIngreds(id: number): Observable<Ingred[]> {
-  const url = `${this.foodsUrl}/retrieveallid/${id}`;
+  const url = `${this.foodsUrl0}/dishes/${id}/ingreds`;
   return this.http.get<Ingred[]>(url).pipe(
     tap(_ => this.log(`fetched ingreds for food id=${id}`)),
     catchError(this.handleError<Ingred[]>(`getFood id=${id}`))
@@ -39,7 +43,7 @@ getIngreds(id: number): Observable<Ingred[]> {
 
     /** GET hero by id. Will 404 if id not found */
     getAllIngreds(): Observable<Ingred[]> {
-      const url = `${this.foodsUrl}/retrallingr`;
+      const url = `${this.foodsUrl0}/ingreds`;
       return this.http.get<Ingred[]>(url).pipe(
         tap(_ => this.log(`fetched ingreds`)),
         catchError(this.handleError<Ingred[]>(`getIngreds`))
@@ -49,7 +53,7 @@ getIngreds(id: number): Observable<Ingred[]> {
 
 /** GET hero by id. Will 404 if id not found */
 getIngred(id: number): Observable<Ingred> {
-  const url = `${this.getIngredUrl}/${id}`;
+  const url = `${this.foodsUrl0}/ingreds/${id}`;
   return this.http.get<Ingred>(url).pipe(
     tap(_ => this.log(`fetched ingred id=${id}`)),
     catchError(this.handleError<Ingred>(`getIngred id=${id}`))
@@ -57,18 +61,19 @@ getIngred(id: number): Observable<Ingred> {
 }
 
 
-getIngreddat(id: number): Observable<Ingred> {
-  const url = `${this.getIngredUrl}/${id}`;
-  return this.http.get<Ingred>(url).pipe(
-    tap(_ => this.log(`fetched ingred id=${id}`)),
-    catchError(this.handleError<Ingred>(`getIngred id=${id}`))
-  );
-}
+// getIngreddat(id: number): Observable<Ingred> {
+//   const url = `${this.getIngredUrl}/${id}`;
+//   return this.http.get<Ingred>(url).pipe(
+//     tap(_ => this.log(`fetched ingred id=${id}`)),
+//     catchError(this.handleError<Ingred>(`getIngred id=${id}`))
+//   );
+// }
+
 deleteIngred (indish: Indish): Observable<Ingred> {
   //const id = typeof food === 'number' ? food : food.id;
-  const url = `${this.foodsUrl}/deloneingr`;
+  const url = `${this.foodsUrl0}/dishes/${indish.idDish}/ingreds/${indish.idIngred}`;
 
-  return this.http.post<any>(url, indish, httpOptions).pipe(
+  return this.http.delete<any>(url, httpOptions).pipe(
     tap(_ => this.log(`deleted ingredi id= ${indish.idIngred} from food id=${indish.idDish}`)),
     catchError(this.handleError<Ingred>('deleteIngred'))
   );
@@ -76,9 +81,9 @@ deleteIngred (indish: Indish): Observable<Ingred> {
 
 deleteIngred1 (id: number): Observable<any> {
   //const id = typeof food === 'number' ? food : food.id;
-  const url = `${this.foodsUrl1}/delingre/${id}`;
+  const url = `${this.foodsUrl0}/ingreds/${id}/dishes`;
 
-  return this.http.get<any>(url).pipe(
+  return this.http.delete<any>(url, httpOptions).pipe(
     tap(_ => this.log(`fetched ingred id=${id}`)),
     catchError(this.handleError<Ingred>(`getIngred id=${id}`))
   );
@@ -86,29 +91,29 @@ deleteIngred1 (id: number): Observable<any> {
 //count dishes for ingreds list
 addIngred (indish: Indish): Observable<Ingred> {
   //const id = typeof food === 'number' ? food : food.id;
-  const url = `${this.foodsUrl}/addoneingr`;
+  const url = `${this.foodsUrl0}/dishes/${indish.idDish}/ingreds/${indish.idIngred}`;
 
-  return this.http.post<any>(url, indish, httpOptions).pipe(
+  return this.http.post<any>(url, httpOptions).pipe(
     tap(_ => this.log(`added ingredi id= ${indish.idIngred} to food id=${indish.idDish}`)),
     catchError(this.handleError<Ingred>('addIngred'))
   );
 }
 
 addData(ingred:Ingred): Observable<number>{
-  const url = `${this.foodsUrl}/countdfi/${ingred.id}`;
+  const url = `${this.foodsUrl0}/count/ingreds/${ingred.idingrenames}`;
   return this.http.get<number>(url).pipe(
   //  tap(_ => this.log(`fetched ingred det id=${ingred.id}`)),
-    catchError(this.handleError<number>(`getIngred det id=${ingred.id}`))
+    catchError(this.handleError<number>(`getIngred det id=${ingred.idingrenames}`))
   );
 
 }
 
 
 foodsForIngred(ingred:Ingred): Observable<Food[]>{
-  const url = `${this.foodsUrl}/getdfi/${ingred.id}`;
+  const url = `${this.foodsUrl0}/dishes/ingreds/${ingred.idingrenames}`;
   return this.http.get<Food[]>(url).pipe(
   //  tap(_ => this.log(`fetched ingred det id=${ingred.id}`)),
-    catchError(this.handleError<Food[]>(`getfoods for Ingred id=${ingred.id}`))
+    catchError(this.handleError<Food[]>(`getfoods for Ingred id=${ingred.idingrenames}`))
   );
   
 }
@@ -117,7 +122,7 @@ foodsForIngred(ingred:Ingred): Observable<Food[]>{
 
 /** POST: add a new hero to the server */
 newInrged (ingred: Ingred): Observable<number> {
-  const url = `${this.foodsUrl}/newingr`;
+  const url = `${this.foodsUrl0}/ingreds`;
   return this.http.post<number>(url, ingred, httpOptions).pipe(
     tap((food: number) => this.log(`added food w/ id=${food}`)),
     catchError(this.handleError<number>('addFood'))
@@ -135,19 +140,19 @@ searchIngreds(term: string): Observable<Ingred[]> {
     return of([]);
   }
   
-  return this.http.get<Ingred[]>(`${this.ingredSearchUrl}?name=${term}`).pipe( 
+  return this.http.get<Ingred[]>(`${this.foodsUrl0}/ingreds/search?name=${term}`).pipe( 
    
     tap(_ => this.log(`found Ingreds matching "${term}"`)),
     catchError(this.handleError<Ingred[]>('searchIngreds', []))
   );
 }
-
+put
 
 
 updateIngred (ingred: Ingred): Observable<any> {
-  const url = `${this.foodsUrl}/editingre`;
-  return this.http.post(url, ingred, httpOptions).pipe(
-    tap(_ => this.log(`updated ingred id=${ingred.id}`)),
+  const url = `${this.foodsUrl0}/ingreds`;
+  return this.http.put(url, ingred, httpOptions).pipe(
+    tap(_ => this.log(`updated ingred id=${ingred.idingrenames}`)),
     catchError(this.handleError<any>('updateHero'))
   );
 }

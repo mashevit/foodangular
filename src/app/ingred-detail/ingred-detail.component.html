@@ -1,21 +1,21 @@
 <div *ngIf="ingred">
   <h2>{{ingred.ingrName | uppercase}} Details</h2>
-  <div><span>id: </span>{{ingred.id}}</div>
+  <div><span>id: </span>{{ingred.idingrenames}}</div>
   <div>
     <label>name:
-      <input [(ngModel)]="ingred.ingrName" placeholder="name"/>
+      <input [(ngModel)]="ingred.ingrname" placeholder="name"/>
     </label>
   </div>
   <button (click)="goBack()">go back</button>
   <button (click)="save()">save</button>
 
 
-  <h2>{{ingred.ingrName | uppercase}} related foods</h2>
+  <h2>{{ingred.ingrname | uppercase}} related foods</h2>
 
   <ul class="heroes">
     <li *ngFor="let food of foods">
-        <a routerLink="/detail/{{food.id}}">
-          <span class="badge">{{food.id}}</span> {{food.dishName}}
+        <a routerLink="/detail/{{food.iddish}}">
+          <span class="badge">{{food.iddish}}</span> {{food.dishname}}
         </a>
 
     </li>

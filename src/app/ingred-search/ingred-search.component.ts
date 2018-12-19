@@ -19,8 +19,8 @@ export class IngredSearchComponent implements OnInit {
   selectedIngred:Ingred;//Observable<>;
   //name:string;
   //nullIngred:Ingred;
-  private nullIngred={     ingrName: "" ,
-  id: -1 } as Ingred;
+  private nullIngred={     ingrname: "" ,
+  idingrenames: -1 } as Ingred;
   @Input() food: Food;
   ingreds$: Observable<Ingred[]>;
   private searchTerms = new Subject<string>();
@@ -36,9 +36,9 @@ private d:number;
   }
  
   addIngred(food:Food,ingred:Ingred){
-    if(ingred.id>0){
-    const a=food.id;
-    const b=ingred.id;
+    if(ingred.idingrenames>0){
+    const a=food.iddish;
+    const b=ingred.idingrenames;
    // this.ingreds = this.ingreds.filter(h => h !== ingred);
     this.ingredService.addIngred({     idDish: a ,
       idIngred: b } as Indish).subscribe();
@@ -48,18 +48,18 @@ private d:number;
       // const a=food.id;
       //const b=ingred.id;
       //c:String;
-      this.c=ingred.ingrName;
+      this.c=ingred.ingrname;
      // this.ingreds = this.ingreds.filter(h => h !== ingred);
-      this.ingredService.newInrged({     ingrName:this.c  } as Ingred).subscribe(num=>this.d=num);}
-      this.selectedIngred.ingrName=this.c;
-      this.selectedIngred.id=this.d;
-      if(this.d>0){this.addIngred(food,({ id: this.d ,
-        ingrName: this.c } as Ingred))}
+      this.ingredService.newInrged({     ingrname:this.c  } as Ingred).subscribe(num=>this.d=num);}
+      this.selectedIngred.ingrname=this.c;
+      this.selectedIngred.idingrenames=this.d;
+      if(this.d>0){this.addIngred(food,({ idingrenames: this.d ,
+        ingrname: this.c } as Ingred))}
   }
 
   ngOnInit() {
-    this.selectedIngred={     ingrName: "" ,
-      id: -1 } as Ingred;
+    this.selectedIngred={     ingrname: "" ,
+    idingrenames: -1 } as Ingred;
     this.ingreds$ = this.searchTerms.pipe(
       // wait 300ms after each keystroke before considering the term
       debounceTime(300),

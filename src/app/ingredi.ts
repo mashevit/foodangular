@@ -1,5 +1,5 @@
 export class Ingred {
-    id: number;
-    ingrName: string;
+  idingrenames: number;
+    ingrname: string;
     numOfDishes:number;
   }

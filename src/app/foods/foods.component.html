@@ -1,8 +1,8 @@
 <h2>My Foods</h2>
 <ul class="heroes">
     <li *ngFor="let food of foods">
-        <a routerLink="/detail/{{food.id}}">
-          <span class="badge">{{food.id}}</span> {{food.dishName}}
+        <a routerLink="/detail/{{food.iddish}}">
+          <span class="badge">{{food.iddish}}</span> {{food.dishname}}
         </a>
         <button class="delete" title="delete food"
         (click)="delete(food)">x</button>

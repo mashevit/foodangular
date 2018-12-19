@@ -41,8 +41,8 @@ export class FoodDetailComponent implements OnInit {
     }
 
     deleteIngr(food:Food,ingred:Ingred ):void{
-     const a=food.id;
-      const b=ingred.id;
+     const a=food.iddish;
+      const b=ingred.idingrenames;
       this.ingreds = this.ingreds.filter(h => h !== ingred);
       this.ingerdService.deleteIngred({     idDish: a ,
         idIngred: b } as Indish).subscribe();
