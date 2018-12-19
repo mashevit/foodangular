@@ -49,8 +49,11 @@ import {CustExtBrowserXhr} from './cust-ext-browser-xhr';
     //   InMemoryDataService, { dataEncapsulation: false }
     // )
   ],
-  providers: [{provide: BrowserXhr, useClass:CustExtBrowserXhr},
-    {provide: LocationStrategy, useClass: HashLocationStrategy}],
+  // providers: [{provide: BrowserXhr, useClass:CustExtBrowserXhr},
+  //   {provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [],
+
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }
