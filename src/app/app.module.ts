@@ -8,7 +8,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule }    from '@angular/common/http';
-import { LocationStrategy,HashLocationStrategy }    from '@angular/common';
+//import { LocationStrategy,HashLocationStrategy }    from '@angular/common';
 //import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 //import { InMemoryDataService }  from './in-memory-data.service';
 import { FoodSearchComponent } from './food-search/food-search.component';
@@ -16,10 +16,10 @@ import { IngredSearchComponent } from './ingred-search/ingred-search.component';
 import { IngredDetailComponent } from './ingred-detail/ingred-detail.component';
 import { IngredsComponent } from './ingreds/ingreds.component';
 //import { AlertModule } from 'ngx-bootstrap';
-import { Provider } from '@angular/core';
+//import { Provider } from '@angular/core';
 //import { AppComponent} from ‘./app/’;
-import { BrowserXhr,HttpModule  } from '@angular/http';
-import {CustExtBrowserXhr} from './cust-ext-browser-xhr';
+import { HttpModule  } from '@angular/http';
+//import {CustExtBrowserXhr} from './cust-ext-browser-xhr';
 @NgModule({
 
   
@@ -51,7 +51,7 @@ import {CustExtBrowserXhr} from './cust-ext-browser-xhr';
   ],
   // providers: [{provide: BrowserXhr, useClass:CustExtBrowserXhr},
   //   {provide: LocationStrategy, useClass: HashLocationStrategy}],
-  providers: [],
+ // providers: [],
 
   
   bootstrap: [AppComponent]
