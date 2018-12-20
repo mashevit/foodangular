@@ -3,8 +3,7 @@ const http = require('http')
 const path = require('path');
 const app = express();
 
-var express = require('express')
- , app = express()
+var  app = express()
  , server = require('http').createServer(app)
  
  app.use(express.static(path.join(__dirname, 'dist')));
