@@ -82,7 +82,7 @@ addFood (food: Food): Observable<Food> {
 /** DELETE: delete the hero from the server */
 deleteFood (food: Food | number): Observable<Food> {
   const id = typeof food === 'number' ? food : food.iddish;
-  const url = `${this.foodsUrl0}/${id}`;
+  const url = `${this.foodsUrl0}/dishes/${id}`;
 
   return this.http.delete<Food>(url, httpOptions).pipe(
     tap(_ => this.log(`deleted food id=${id}`)),
