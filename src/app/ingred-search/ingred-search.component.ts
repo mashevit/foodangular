@@ -8,7 +8,7 @@ import{Food} from '../food';
 import {
    debounceTime, distinctUntilChanged, switchMap
  } from 'rxjs/operators';
-import { AttachSession } from '../../../node_modules/protractor/built/driverProviders';
+// import { AttachSession } from '../../../node_modules/protractor/built/driverProviders';
 
 @Component({
   selector: 'app-ingred-search',
