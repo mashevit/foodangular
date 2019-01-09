@@ -2,7 +2,20 @@
   "name": "food-angular",
   "version": "1.0.0",
   "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.4.",
-  "main": "main.c5c67ae8929f817149b6.js",
+  "main": "server.js",
+  "engines": {
+    "node": "11.0.0",
+    "npm": "6.4.1"
+  },
+  "scripts": {
+    "ng": "ng",
+    "start": "node server.js",
+    "build": "ng build",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e",
+    "postinstall": "ng build --aot --prod"
+  },
   "dependencies": {
     "@angular/animations": "^7.2.0",
     "@angular/common": "^7.2.0",
@@ -28,10 +41,7 @@
     "@types/react": "^16.7.18",
     "@types/react-dom": "^16.0.11"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
+  "private": true,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mashevit/foodangular.git"
